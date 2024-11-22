@@ -132,24 +132,51 @@ ul li:hover {
 }
 
 @media (max-width: 768px) {
-  .dropdown{
+  .dropdown {
     max-width: 90%;
   }
+  
   .offer-group {
     flex-direction: column; /* Stack heading and cards vertically on mobile */
-  }
-
-  .offer-group h2 {
-    flex: none;
-    text-align: center;
-    margin-bottom: 10px;
+    align-items: center; /* Ensure alignment for the entire group */
   }
 
   .offer-grid {
-    justify-content: center; /* Center cards on mobile */
+    justify-content: center; /* Center cards */
+    width: 100%; /* Allow grid to take full width */
   }
 
   .offer-card {
-    flex: 1 1 100%; /* Full width cards on mobile */
+    flex: none; /* Disable shrinking or growing */
+    width: 95%; /* Set a specific width for mobile */
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center; /* Center align card content */
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box; /* Ensure padding is included in width */
+    margin: 0;
+  }
+
+  .offer-card img {
+    width: 100%; /* Full width of the card */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 10px; /* Add space below the image */
+  }
+
+  .offer-info h3 {
+    font-size: 16px; /* Slightly smaller title size for mobile */
+    margin: 10px 0;
+  }
+
+  .offer-info p {
+    font-size: 14px; /* Adjust font size for better readability */
+    margin-bottom: 15px;
+  }
+
+  .offer-info button {
+    width: 100%; /* Make button full width */
+    font-size: 14px; /* Adjust font size for smaller screens */
+    padding: 10px; /* Ensure proper spacing */
   }
 }
