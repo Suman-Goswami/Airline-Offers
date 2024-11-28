@@ -78,7 +78,7 @@ const AirlineOffers = () => {
   const selectedIxigoOffers = getOffersForSelectedCard(ixigoOffers);
 
   return (
-    <div className="App">
+    <div className="App" style={{ fontFamily: "'Libre Baskerville', serif" }}>
       <h1>Airline Offers - Linked to your Credit Card</h1>
       <div className="dropdown" style={{ position: "relative", width: "600px", margin: "0 auto" }}>
         <input
