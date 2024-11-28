@@ -79,7 +79,7 @@ const AirlineOffers = () => {
 
   return (
     <div className="App">
-      <h1>Airline Offers</h1>
+      <h1>Airline Offers - Linked to your Credit Card</h1>
       <div className="dropdown" style={{ position: "relative", width: "600px", margin: "0 auto" }}>
         <input
           type="text"
