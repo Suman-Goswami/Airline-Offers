@@ -57,6 +57,7 @@ const AirlineOffers = () => {
       setFilteredCreditCards(filtered);
     } else {
       setFilteredCreditCards([]);
+      setSelectedCard("");
     }
   };
 
@@ -76,6 +77,11 @@ const AirlineOffers = () => {
   const selectedEaseOffers = getOffersForSelectedCard(easeOffers);
   const selectedYatraOffers = getOffersForSelectedCard(yatraOffers);
   const selectedIxigoOffers = getOffersForSelectedCard(ixigoOffers);
+
+  const hasOffers =
+    selectedEaseOffers.length > 0 ||
+    selectedYatraOffers.length > 0 ||
+    selectedIxigoOffers.length > 0;
 
   return (
     <div className="App" style={{ fontFamily: "'Libre Baskerville', serif" }}>
@@ -139,76 +145,76 @@ const AirlineOffers = () => {
       {/* Offers Section */}
       {selectedCard && (
         <div className="offers-section">
-          {selectedEaseOffers.length > 0 && (
-            <div>
-              <h2>Offers on EaseMyTrip</h2>
-              <div className="offer-grid">
-                {selectedEaseOffers.map((offer, index) => (
-                  <div key={index} className="offer-card">
-                    <img src={offer.Image} alt={offer.Title} />
-                    <div className="offer-info">
-                      <h3>{offer.Title}</h3>
-                      <p>{offer.Offer}</p>
-                      <button
-                        onClick={() =>
-                          window.open(offer.Link, "_blank")
-                        }
-                      >
-                        View Details
-                      </button>
-                    </div>
+          {hasOffers ? (
+            <>
+              {selectedEaseOffers.length > 0 && (
+                <div>
+                  <h2>Offers on EaseMyTrip</h2>
+                  <div className="offer-grid">
+                    {selectedEaseOffers.map((offer, index) => (
+                      <div key={index} className="offer-card">
+                        <img src={offer.Image} alt={offer.Title} />
+                        <div className="offer-info">
+                          <h3>{offer.Title}</h3>
+                          <p>{offer.Offer}</p>
+                          <button
+                            onClick={() => window.open(offer.Link, "_blank")}
+                          >
+                            View Details
+                          </button>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </div>
-          )}
+                </div>
+              )}
 
-          {selectedYatraOffers.length > 0 && (
-            <div>
-              <h2>Offers on Yatra</h2>
-              <div className="offer-grid">
-                {selectedYatraOffers.map((offer, index) => (
-                  <div key={index} className="offer-card">
-                    <img src={offer.Image} alt={offer.Title} />
-                    <div className="offer-info">
-                      <h3>{offer.Title}</h3>
-                      <p>{offer.Offer}</p>
-                      <button
-                        onClick={() =>
-                          window.open(offer.Link, "_blank")
-                        }
-                      >
-                        View Details
-                      </button>
-                    </div>
+              {selectedYatraOffers.length > 0 && (
+                <div>
+                  <h2>Offers on Yatra</h2>
+                  <div className="offer-grid">
+                    {selectedYatraOffers.map((offer, index) => (
+                      <div key={index} className="offer-card">
+                        <img src={offer.Image} alt={offer.Title} />
+                        <div className="offer-info">
+                          <h3>{offer.Title}</h3>
+                          <p>{offer.Offer}</p>
+                          <button
+                            onClick={() => window.open(offer.Link, "_blank")}
+                          >
+                            View Details
+                          </button>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </div>
-          )}
+                </div>
+              )}
 
-          {selectedIxigoOffers.length > 0 && (
-            <div>
-              <h2>Offers on Ixigo</h2>
-              <div className="offer-grid">
-                {selectedIxigoOffers.map((offer, index) => (
-                  <div key={index} className="offer-card">
-                    <img src={offer.Image} alt={offer.Title} />
-                    <div className="offer-info">
-                      <h3>{offer.Title}</h3>
-                      <p>{offer.Offer}</p>
-                      <button
-                        onClick={() =>
-                          window.open(offer.Link, "_blank")
-                        }
-                      >
-                        View Details
-                      </button>
-                    </div>
+              {selectedIxigoOffers.length > 0 && (
+                <div>
+                  <h2>Offers on Ixigo</h2>
+                  <div className="offer-grid">
+                    {selectedIxigoOffers.map((offer, index) => (
+                      <div key={index} className="offer-card">
+                        <img src={offer.Image} alt={offer.Title} />
+                        <div className="offer-info">
+                          <h3>{offer.Title}</h3>
+                          <p>{offer.Offer}</p>
+                          <button
+                            onClick={() => window.open(offer.Link, "_blank")}
+                          >
+                            View Details
+                          </button>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </div>
+                </div>
+              )}
+            </>
+          ) : (
+            <p>No offers available for the selected credit card.</p>
           )}
         </div>
       )}
