@@ -11,7 +11,7 @@ const AirlineOffers = () => {
   const [easeOffers, setEaseOffers] = useState([]);
   const [yatraOffers, setYatraOffers] = useState([]);
   const [ixigoOffers, setIxigoOffers] = useState([]);
-  const [selectedOfferDetails, setSelectedOfferDetails] = useState(null);
+  const [noOffersMessage, setNoOffersMessage] = useState(false);
 
   useEffect(() => {
     const fetchCSVData = async () => {
@@ -55,9 +55,10 @@ const AirlineOffers = () => {
         card.toLowerCase().startsWith(value.toLowerCase())
       );
       setFilteredCreditCards(filtered);
+      setNoOffersMessage(filtered.length === 0);
     } else {
       setFilteredCreditCards([]);
-      setSelectedCard("");
+      setNoOffersMessage(false);
     }
   };
 
@@ -65,6 +66,7 @@ const AirlineOffers = () => {
     setSelectedCard(card);
     setQuery(card);
     setFilteredCreditCards([]);
+    setNoOffersMessage(false);
   };
 
   const getOffersForSelectedCard = (offers) => {
@@ -78,15 +80,13 @@ const AirlineOffers = () => {
   const selectedYatraOffers = getOffersForSelectedCard(yatraOffers);
   const selectedIxigoOffers = getOffersForSelectedCard(ixigoOffers);
 
-  const hasOffers =
-    selectedEaseOffers.length > 0 ||
-    selectedYatraOffers.length > 0 ||
-    selectedIxigoOffers.length > 0;
-
   return (
     <div className="App" style={{ fontFamily: "'Libre Baskerville', serif" }}>
       <h1>Airline Offers - Linked to your Credit Card</h1>
-      <div className="dropdown" style={{ position: "relative", width: "600px", margin: "0 auto" }}>
+      <div
+        className="dropdown"
+        style={{ position: "relative", width: "600px", margin: "0 auto" }}
+      >
         <input
           type="text"
           value={query}
@@ -142,79 +142,79 @@ const AirlineOffers = () => {
         )}
       </div>
 
+      {noOffersMessage && (
+        <p style={{ color: "red", textAlign: "center", marginTop: "10px" }}>
+          No matching offers found for the entered credit card.
+        </p>
+      )}
+
       {/* Offers Section */}
       {selectedCard && (
         <div className="offers-section">
-          {hasOffers ? (
-            <>
-              {selectedEaseOffers.length > 0 && (
-                <div>
-                  <h2>Offers on EaseMyTrip</h2>
-                  <div className="offer-grid">
-                    {selectedEaseOffers.map((offer, index) => (
-                      <div key={index} className="offer-card">
-                        <img src={offer.Image} alt={offer.Title} />
-                        <div className="offer-info">
-                          <h3>{offer.Title}</h3>
-                          <p>{offer.Offer}</p>
-                          <button
-                            onClick={() => window.open(offer.Link, "_blank")}
-                          >
-                            View Details
-                          </button>
-                        </div>
-                      </div>
-                    ))}
+          {selectedEaseOffers.length > 0 && (
+            <div>
+              <h2>Offers on EaseMyTrip</h2>
+              <div className="offer-grid">
+                {selectedEaseOffers.map((offer, index) => (
+                  <div key={index} className="offer-card">
+                    <img src={offer.Image} alt={offer.Title} />
+                    <div className="offer-info">
+                      <h3>{offer.Title}</h3>
+                      <p>{offer.Offer}</p>
+                      <button
+                        onClick={() => window.open(offer.Link, "_blank")}
+                      >
+                        View Details
+                      </button>
+                    </div>
                   </div>
-                </div>
-              )}
+                ))}
+              </div>
+            </div>
+          )}
 
-              {selectedYatraOffers.length > 0 && (
-                <div>
-                  <h2>Offers on Yatra</h2>
-                  <div className="offer-grid">
-                    {selectedYatraOffers.map((offer, index) => (
-                      <div key={index} className="offer-card">
-                        <img src={offer.Image} alt={offer.Title} />
-                        <div className="offer-info">
-                          <h3>{offer.Title}</h3>
-                          <p>{offer.Offer}</p>
-                          <button
-                            onClick={() => window.open(offer.Link, "_blank")}
-                          >
-                            View Details
-                          </button>
-                        </div>
-                      </div>
-                    ))}
+          {selectedYatraOffers.length > 0 && (
+            <div>
+              <h2>Offers on Yatra</h2>
+              <div className="offer-grid">
+                {selectedYatraOffers.map((offer, index) => (
+                  <div key={index} className="offer-card">
+                    <img src={offer.Image} alt={offer.Title} />
+                    <div className="offer-info">
+                      <h3>{offer.Title}</h3>
+                      <p>{offer.Offer}</p>
+                      <button
+                        onClick={() => window.open(offer.Link, "_blank")}
+                      >
+                        View Details
+                      </button>
+                    </div>
                   </div>
-                </div>
-              )}
+                ))}
+              </div>
+            </div>
+          )}
 
-              {selectedIxigoOffers.length > 0 && (
-                <div>
-                  <h2>Offers on Ixigo</h2>
-                  <div className="offer-grid">
-                    {selectedIxigoOffers.map((offer, index) => (
-                      <div key={index} className="offer-card">
-                        <img src={offer.Image} alt={offer.Title} />
-                        <div className="offer-info">
-                          <h3>{offer.Title}</h3>
-                          <p>{offer.Offer}</p>
-                          <button
-                            onClick={() => window.open(offer.Link, "_blank")}
-                          >
-                            View Details
-                          </button>
-                        </div>
-                      </div>
-                    ))}
+          {selectedIxigoOffers.length > 0 && (
+            <div>
+              <h2>Offers on Ixigo</h2>
+              <div className="offer-grid">
+                {selectedIxigoOffers.map((offer, index) => (
+                  <div key={index} className="offer-card">
+                    <img src={offer.Image} alt={offer.Title} />
+                    <div className="offer-info">
+                      <h3>{offer.Title}</h3>
+                      <p>{offer.Offer}</p>
+                      <button
+                        onClick={() => window.open(offer.Link, "_blank")}
+                      >
+                        View Details
+                      </button>
+                    </div>
                   </div>
-                </div>
-              )}
-            </>
-          ) : (
-            <p>No offers available for the selected credit card.</p>
+                ))}
+              </div>
+            </div>
           )}
         </div>
       )}
