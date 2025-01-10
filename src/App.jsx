@@ -57,7 +57,9 @@ const AirlineOffers = () => {
       setFilteredCreditCards(filtered);
       setNoOffersMessage(filtered.length === 0);
     } else {
+      // Reset offers and clear selected card when input is cleared
       setFilteredCreditCards([]);
+      setSelectedCard("");
       setNoOffersMessage(false);
     }
   };
@@ -82,7 +84,7 @@ const AirlineOffers = () => {
 
   return (
     <div className="App" style={{ fontFamily: "'Libre Baskerville', serif" }}>
-      <h1>Airline Offers - Linked to your Credit Card</h1>
+      <h1>Airline Offers</h1>
       <div
         className="dropdown"
         style={{ position: "relative", width: "600px", margin: "0 auto" }}
