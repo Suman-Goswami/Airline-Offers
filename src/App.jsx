@@ -57,7 +57,6 @@ const AirlineOffers = () => {
       setFilteredCreditCards(filtered);
       setNoOffersMessage(filtered.length === 0);
     } else {
-      // Reset offers and clear selected card when input is cleared
       setFilteredCreditCards([]);
       setSelectedCard("");
       setNoOffersMessage(false);
@@ -84,7 +83,23 @@ const AirlineOffers = () => {
 
   return (
     <div className="App" style={{ fontFamily: "'Libre Baskerville', serif" }}>
+      <nav style={styles.navbar}>
+        <div style={styles.logoContainer}>
+          <a href="https://www.myrupaya.in/">
+            <img
+              src="https://static.wixstatic.com/media/f836e8_26da4bf726c3475eabd6578d7546c3b2~mv2.jpg/v1/crop/x_124,y_0,w_3152,h_1458/fill/w_909,h_420,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/dark_logo_white_background.jpg"
+              alt="MyRupaya Logo"
+              style={styles.logo}
+            />
+          </a>
+          <div style={styles.linksContainer}>
+            <a href="https://www.myrupaya.in/" style={styles.link}>Home</a>
+          </div>
+        </div>
+      </nav>
+
       <h1>Airline Offers</h1>
+
       <div
         className="dropdown"
         style={{ position: "relative", width: "600px", margin: "0 auto" }}
@@ -102,6 +117,7 @@ const AirlineOffers = () => {
             borderRadius: "5px",
           }}
         />
+
         {filteredCreditCards.length > 0 && (
           <ul
             style={{
@@ -150,7 +166,6 @@ const AirlineOffers = () => {
         </p>
       )}
 
-      {/* Offers Section */}
       {selectedCard && (
         <div className="offers-section">
           {selectedEaseOffers.length > 0 && (
@@ -163,9 +178,7 @@ const AirlineOffers = () => {
                     <div className="offer-info">
                       <h3>{offer.Title}</h3>
                       <p>{offer.Offer}</p>
-                      <button
-                        onClick={() => window.open(offer.Link, "_blank")}
-                      >
+                      <button onClick={() => window.open(offer.Link, "_blank")}>
                         View Details
                       </button>
                     </div>
@@ -185,9 +198,7 @@ const AirlineOffers = () => {
                     <div className="offer-info">
                       <h3>{offer.Title}</h3>
                       <p>{offer.Offer}</p>
-                      <button
-                        onClick={() => window.open(offer.Link, "_blank")}
-                      >
+                      <button onClick={() => window.open(offer.Link, "_blank")}>
                         View Details
                       </button>
                     </div>
@@ -207,9 +218,7 @@ const AirlineOffers = () => {
                     <div className="offer-info">
                       <h3>{offer.Title}</h3>
                       <p>{offer.Offer}</p>
-                      <button
-                        onClick={() => window.open(offer.Link, "_blank")}
-                      >
+                      <button onClick={() => window.open(offer.Link, "_blank")}>
                         View Details
                       </button>
                     </div>
@@ -222,6 +231,38 @@ const AirlineOffers = () => {
       )}
     </div>
   );
+};
+
+const styles = {
+  navbar: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "10px 20px",
+    backgroundColor: "#CDD1C1",
+  },
+  logoContainer: {
+    display: "flex",
+    alignItems: "center",
+  },
+  logo: {
+    width: "100px",
+    height: "100px",
+    marginRight: "20px",
+  },
+  linksContainer: {
+    display: "flex",
+    gap: "35px",
+    flexWrap: "wrap",
+    marginLeft: "40px",
+  },
+  link: {
+    textDecoration: "none",
+    color: "black",
+    fontSize: "18px",
+    fontFamily: "Arial, sans-serif",
+    transition: "color 0.3s ease",
+  },
 };
 
 export default AirlineOffers;
