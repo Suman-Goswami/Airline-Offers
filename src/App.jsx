@@ -66,12 +66,18 @@ const AirlineOffers = () => {
     setQuery(value);
 
     if (value) {
-      const filteredCredit = creditCards.filter((card) =>
-        card.toLowerCase().startsWith(value.toLowerCase())
-      );
-      const filteredDebit = debitCards.filter((card) =>
-        card.toLowerCase().startsWith(value.toLowerCase())
-      );
+      // Split search terms and match all terms (substring matching)
+      const searchTerms = value.toLowerCase().split(/\s+/);
+      
+      const filteredCredit = creditCards.filter((card) => {
+        const cardLower = card.toLowerCase();
+        return searchTerms.every(term => cardLower.includes(term));
+      });
+      
+      const filteredDebit = debitCards.filter((card) => {
+        const cardLower = card.toLowerCase();
+        return searchTerms.every(term => cardLower.includes(term));
+      });
 
       // Combine filtered credit and debit cards with headings
       const combinedResults = [];
