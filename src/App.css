@@ -1,6 +1,6 @@
 /* Global Styles */
 body {
-  background-color: #F6F4E9;
+  background: linear-gradient(to bottom, #999792, #cecdc9);
   font-family: Arial, sans-serif;
   color: #333;
   margin: 0;
@@ -119,7 +119,7 @@ ul li:hover {
 }
 
 .offer-info button {
-  background-color: #4CAF50;
+  background-color: #1e7145;
   color: #fff;
   padding: 10px 15px;
   border: none;
